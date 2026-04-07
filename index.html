@@ -18,10 +18,8 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
+            width: 100vw;
+            height: 100vh;
             object-fit: cover;
         }
     </style>
@@ -29,11 +27,13 @@
 <body>
     <video id="player" autoplay muted loop playsinline></video>
     <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        const videoSrc = urlParams.get('v');
-        if (videoSrc) {
+        const fullQuery = window.location.search;
+        const vIndex = fullQuery.indexOf('v=');
+        
+        if (vIndex !== -1) {
+            const videoSrc = fullQuery.substring(vIndex + 2);
             const player = document.getElementById('player');
-            player.src = videoSrc;
+            player.src = decodeURIComponent(videoSrc);
         }
     </script>
 </body>
