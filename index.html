@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>benchmerge</title>
+    <title>benchmerge<title>
     <style>
         body, html {
             margin: 0;
@@ -12,12 +12,11 @@
             height: 100%;
             overflow: hidden;
             background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
-        video {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+        #content {
             width: 100vw;
             height: 100vh;
             object-fit: cover;
@@ -25,15 +24,34 @@
     </style>
 </head>
 <body>
-    <video id="player" autoplay muted loop playsinline></video>
+    <div id="container"></div>
+
     <script>
-        const fullQuery = window.location.search;
-        const vIndex = fullQuery.indexOf('v=');
+        const urlParams = new URL(window.location.href).searchParams;
+        const rawSrc = window.location.search.split('v=')[1];
         
-        if (vIndex !== -1) {
-            const videoSrc = fullQuery.substring(vIndex + 2);
-            const player = document.getElementById('player');
-            player.src = decodeURIComponent(videoSrc);
+        if (rawSrc) {
+            const src = decodeURIComponent(rawSrc);
+            const container = document.getElementById('container');
+            
+            const imageExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.bmp'];
+            const isImage = imageExtensions.some(ext => src.toLowerCase().includes(ext));
+
+            if (isImage) {
+                const img = document.createElement('img');
+                img.src = src;
+                img.id = 'content';
+                container.appendChild(img);
+            } else {
+                const video = document.createElement('video');
+                video.src = src;
+                video.id = 'content';
+                video.autoplay = true;
+                video.muted = true;
+                video.loop = true;
+                video.setAttribute('playsinline', '');
+                container.appendChild(video);
+            }
         }
     </script>
 </body>
