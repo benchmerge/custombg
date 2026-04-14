@@ -46,22 +46,44 @@
             height: 100vh;
             object-fit: cover;
         }
+        #sound-btn {
+            position: fixed;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            z-index: 9999;
+        }
+        #sound-btn svg {
+            width: 48px;
+            height: 48px;
+            opacity: 0.7;
+            filter: drop-shadow(0 0 6px rgba(0,0,0,0.8));
+            transition: opacity 0.2s;
+        }
+        #sound-btn:hover svg {
+            opacity: 1;
+        }
     </style>
 </head>
 <body>
     <div id="container"></div>
 
     <script>
-        const urlParams = new URL(window.location.href).searchParams;
-        const rawSrc = window.location.search.split('v=')[1];
-        
+        const urlParams = new URLSearchParams(window.location.search);
+        const rawSrc = window.location.search.split('v=')[1]?.split('&')[0];
+        const soundEnabled = urlParams.get('s') === 'true';
+ 
         if (rawSrc) {
             const src = decodeURIComponent(rawSrc);
             const container = document.getElementById('container');
             
             const imageExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.bmp'];
             const isImage = imageExtensions.some(ext => src.toLowerCase().includes(ext));
-
+ 
             if (isImage) {
                 const img = document.createElement('img');
                 img.src = src;
@@ -76,6 +98,22 @@
                 video.loop = true;
                 video.setAttribute('playsinline', '');
                 container.appendChild(video);
+ 
+                if (soundEnabled) {
+                    const btn = document.createElement('button');
+                    btn.id = 'sound-btn';
+                    btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M11 5L6 9H2v6h4l5 4V5z" fill="white"/>
+                        <line x1="23" y1="9" x2="17" y2="15" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                        <line x1="17" y1="9" x2="23" y2="15" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                    </svg>`;
+                    btn.addEventListener('click', () => {
+                        video.muted = false;
+                        video.play();
+                        btn.remove();
+                    });
+                    document.body.appendChild(btn);
+                }
             }
         }
     </script>
