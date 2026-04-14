@@ -2,6 +2,7 @@
 **Custom background for Dota 2 main menu** — via Panorama API, no VPK edits required.
 
 ![Badge](https://hitscounter.dev/api/hit?url=https%3A%2F%2Fgithub.com%2Fbenchmerge%2Fcustombg&label=&icon=check2&color=%23c29ffa&message=&style=flat&tz=Europe%2FMoscow)
+
 📖 [Русская версия](https://github.com/benchmerge/custombg/blob/main/README.md)
 
 ---
