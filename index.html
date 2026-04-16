@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>benchmerge</title>
 
-    <!-- Yandex.Metrika counter -->
     <script type="text/javascript">
         (function(m,e,t,r,i,k,a){
             m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
@@ -17,9 +16,6 @@
         ym(108438918, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
     </script>
     <noscript><div><img src="https://mc.yandex.ru/watch/108438918" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-    <!-- /Yandex.Metrika counter -->
-
-    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-673QK83PG9"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -40,6 +36,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
         #content {
             width: 100vw;
@@ -67,9 +64,133 @@
         #sound-btn:hover svg {
             opacity: 1;
         }
+
+        /* --- Стили для уведомления об обновлении --- */
+        #update-banner {
+            position: fixed;
+            top: 70px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(15, 15, 15, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 24px;
+            width: 90%;
+            max-width: 450px;
+            z-index: 10000;
+            color: #fff;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            box-sizing: border-box;
+        }
+        #update-banner .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        #update-banner h2 {
+            margin: 0;
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: #fff;
+        }
+        #update-banner .close-btn {
+            background: none;
+            border: none;
+            color: #666;
+            cursor: pointer;
+            font-size: 16px;
+            padding: 0;
+            transition: color 0.2s;
+        }
+        #update-banner .close-btn:hover {
+            color: #fff;
+        }
+        #update-banner p {
+            margin: 0;
+            font-size: 13px;
+            color: #aaa;
+            line-height: 1.5;
+        }
+        #update-banner p b {
+            color: #ddd;
+        }
+        #update-banner .changelog {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 12px 12px 12px 28px;
+            margin: 0;
+            list-style: none;
+            font-size: 12px;
+            color: #bbb;
+            line-height: 1.6;
+        }
+        #update-banner .changelog li {
+            position: relative;
+            margin-bottom: 4px;
+        }
+        #update-banner .changelog li:last-child {
+            margin-bottom: 0;
+        }
+        #update-banner .changelog li::before {
+            content: "+";
+            position: absolute;
+            left: -14px;
+            color: #555;
+        }
+        #update-banner .changelog a {
+            color: #888;
+            text-decoration: underline;
+            text-decoration-color: rgba(136, 136, 136, 0.5);
+            text-underline-offset: 3px;
+            transition: color 0.2s;
+        }
+        #update-banner .changelog a:hover {
+            color: #fff;
+            text-decoration-color: #fff;
+        }
+        #update-banner .btn-container {
+            margin-top: 4px;
+        }
+        #update-banner a.btn {
+            display: block;
+            background: #fff;
+            color: #000;
+            text-decoration: none;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            text-align: center;
+            transition: opacity 0.2s;
+        }
+        #update-banner a.btn:hover {
+            opacity: 0.8;
+        }
     </style>
 </head>
 <body>
+    <div id="update-banner">
+        <div class="header">
+            <h2>Доступно обновление</h2>
+        </div>
+        <p>Поддержка старого шаблона скоро будет прекращена. Актуальная версия доступна в дискорд-ветке скрипта и на <b>braindead.cyou</b>.</p>
+        
+        <ul class="changelog">
+            <li>Исправления багов и повышение стабильности</li>
+            <li>Переход на собственный хост для стабильной работы</li>
+            <li>Улучшения интерфейса и визуальной части</li>
+            <li>Добавлена возможность скрывать панель друзей и пати</li>
+            <li>Добавлен просмотр библиотеки фонов (<a href="https://braindead.cyou/library" target="_blank">braindead.cyou/library</a>)</li>
+        </ul>
+    </div>
+
     <div id="container"></div>
 
     <script>
