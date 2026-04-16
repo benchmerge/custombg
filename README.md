@@ -28,18 +28,18 @@
 
 Для mp4, jpg, png используй шаблон:
 ```
-https://benchmerge.github.io/custombg/?v=ССЫЛКА_НА_ФАЙЛ
+https://braindead.cyou/?v=ССЫЛКА_НА_ФАЙЛ
 ```
 
 Нужна **прямая** ссылка на файл, не на страницу.
 
 **Не работает:**
 ```
-https://benchmerge.github.io/custombg/?v=https://pinterest.com/pin/...
+https://braindead.cyou/?v=https://pinterest.com/pin/...
 ```
 **Работает:**
 ```
-https://benchmerge.github.io/custombg/?v=https://i.pinimg.com/....jpg
+https://braindead.cyou/?v=https://i.pinimg.com/....jpg
 ```
 
 Прямую ссылку на картинку получить просто: правая кнопка мыши → «Копировать URL картинки».
