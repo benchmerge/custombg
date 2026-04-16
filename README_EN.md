@@ -28,18 +28,18 @@ The script creates an HTML panel over the default background and loads any URL i
 
 For mp4, jpg, png use the template:
 ```
-https://benchmerge.github.io/custombg/?v=YOUR_FILE_URL
+https://braindead.cyou/?v=YOUR_FILE_URL
 ```
 
 Requires a **direct** link to the file, not a page URL.
 
 **Doesn't work:**
 ```
-https://benchmerge.github.io/custombg/?v=https://pinterest.com/pin/...
+https://braindead.cyou/?v=https://pinterest.com/pin/...
 ```
 **Works:**
 ```
-https://benchmerge.github.io/custombg/?v=https://i.pinimg.com/736x/3b/b6/03/....jpg
+https://braindead.cyou/?v=https://i.pinimg.com/736x/3b/b6/03/....jpg
 ```
 
 To get a direct image link: right-click the image → "Copy image address".
